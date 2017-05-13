@@ -15,6 +15,8 @@ class App extends Component {
 				{ description: "capital letters can do yoga",          run: this.generateDummyTest() }
 			]
 		};
+
+		this.startButtonClickHandler = this.startButtonClickHandler.bind(this);
 	}
 
 	callback() {
@@ -32,12 +34,16 @@ class App extends Component {
 		};
 	}
 
-	render() {
+	startButtonClickHandler(e) {
 		console.log(this.state.tests);
 		this.state.tests.forEach((test) => test.run(this.callback));
+	}
 
+	render() {
 		return (
 			<div className="App">
+				<button id="start_button" onClick={this.startButtonClickHandler}>Start Tests</button>
+
 
 			</div>
 		);
