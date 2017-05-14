@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Test from './Test';
+import TestResults from './TestResults';
 import './App.css';
 
 class App extends Component {
@@ -88,7 +90,18 @@ class App extends Component {
 					Start Tests
 				</button>
 
+				{this.state.tests.map((test, testNumber) => (
+					<Test
+						key={testNumber}
+						state={this.state.testResults[testNumber]}
+						description={this.state.tests[testNumber].description} />
+				))}
 
+				<TestResults
+					passed={this.state.testResults.filter(el => el === 'Passed').length}
+					failed={this.state.testResults.filter(el => el === 'Failed').length}
+					running={this.state.testResults.filter(el => el === 'Running').length}
+					testNum={this.state.tests.length} />
 			</div>
 		);
 	}
